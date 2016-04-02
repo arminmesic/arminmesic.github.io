@@ -1,0 +1,63 @@
+---
+layout: default
+title: Blog
+---
+
+<div>
+    <blockquote>TIL: Today I Learned</blockquote>
+    <p>Small write ups of the things I've learned during a day.</p>
+</div>
+
+<div class="home">
+    {% for post in site.til.categories.tilangular %}
+    <li>{{ post }}</li>
+    {% endfor %}
+ {{site.til.categories}}
+<div class="post-list">
+    <h1>Angular</h1>
+    {% for til in site.til %}
+        {% if til.categories contains 'angular' %}
+            <div class="article">
+                <h1 class="post-title">
+                    <a class="post-link" href="{{ til.url | prepend: site.baseurl }}">{{ til.title }}</a>
+                </h1>
+            </div>
+        {% endif %}
+    {% endfor %}
+    
+    <h1>Docker</h1>
+    {% for til in site.til %}
+        {% if til.categories contains 'docker' %}
+            <div class="article">
+                <h1 class="post-title">
+                    <a class="post-link" href="{{ til.url | prepend: site.baseurl }}">{{ til.title }}</a>
+                </h1>
+            </div>
+        {% endif %}
+    {% endfor %}
+    
+    <h1>Git</h1>
+    {% for til in site.til %}
+        {% if til.categories contains 'git' %}
+            <div class="article">
+                <h1 class="post-title">
+                    <a class="post-link" href="{{ til.url | prepend: site.baseurl }}">{{ til.title }}</a>
+                </h1>
+            </div>
+        {% endif %}
+    {% endfor %}
+    
+    <h1>Javascript</h1>
+    {% for til in site.til %}
+        {% if til.categories contains 'javascript' %}
+            <div class="article">
+                <h1 class="post-title">
+                    <a class="post-link" href="{{ til.url | prepend: site.baseurl }}">{{ til.title }}</a>
+                </h1>
+            </div>
+        {% endif %}
+    {% endfor %}
+    
+  </div>
+  
+</div>

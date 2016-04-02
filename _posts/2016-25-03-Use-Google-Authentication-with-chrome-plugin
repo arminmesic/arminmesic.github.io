@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Using npm modules without installing them globally"
+date:   2016-03-17
+categories: 
+    - JavaScript
+    - Node
+    - Npm
+---
+
+
+## What are we going to create
+
+## What is needed
+
+## Create the basic chrome extension
+
+## Include the extension
+
+## Google API settings
+
+## Chrome identity api
+* Just on background pages not content script
+* What about popups, can they access the chrome identity api
+* Communication between content scripts and background scripts?
+
+## Use the demo application to fetch some random data

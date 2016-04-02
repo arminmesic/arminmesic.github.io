@@ -1,0 +1,14 @@
+.nav__small {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #878787;
+  a {
+    color: #878787;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
