@@ -19,7 +19,7 @@
 }
 .page-title,
 .post-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 0;
 }
 
@@ -76,4 +76,10 @@
   .post-title:hover{
     color: #242424;
   }
+}
+
+.post-list {
+    .article {
+        margin-bottom: 20px;
+    }
 }
