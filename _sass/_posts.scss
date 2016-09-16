@@ -18,8 +18,13 @@
   }
 }
 .page-title,
-.post-title {
+.post-list .post-title {
   font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.post-title {
+  font-size: 2rem;
   margin-top: 0;
 }
 
