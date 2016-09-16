@@ -6,7 +6,6 @@ categories:
     - Machine Learning
 ---
 
-# Why am I writing this
 I'm currently working through Andrew Ng's machine learning course and I'm writing down the things I'm learning during
 this time. This post is for beginners and if somebody has found a mistake shoot me a mail, you can find my address [here](/about)
 
