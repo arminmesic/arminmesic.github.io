@@ -5,54 +5,93 @@ date:   2016-09-15
 categories: 
     - Machine Learning
 ---
-#NOTES
-* Think about implementing it in Python or just use octave/mathlab
 
+Linear regression learns from a provided dataset and tries to predict a number. I'm going to show how 
+it works with a simple dataset and the goal is to be able to predict housing prices.
 
-# When to use linear regression
+I'm going to use a dataset that I got from Andrew Ng's Machine Learning course, it's a simple example 
+as the main point of this post is to understand the idea of the algorithm.
 
-# What are we Implementing
--> using simple example to understand the underlying principle
--> octave focus on the Math
--> using one variable
+I'm going to use Matlab to implement it, you can find the source [here](/about).
 
-# Dataset
--> split between training and test data
+Here is a small excerpt of the data
+
+| area (feet^2) | #bedrooms | Price  |
+|---------------|-----------|--------|
+| 2104 | 3 | 399900 |
+| 1600 | 3 | 329900 |
+| 2400 | 3 | 232000 |
 
 # Plotting the data
--> what are we looking for
+To get a better idea about the data I'm going to plot it.
+![Data Plot](/images/posts/linear-regression/initialPlot.jpg "Data Plot")
 
-# Feature Selection
--> seems linear so just one variable
+As you can see I've just selected one feature, the living area, I'm keeping it simple.
 
-# Math for a straight linear
-![](https://chrisjmccormick.files.wordpress.com/2014/02/mse_variable_descriptions.png 'tet')
--> simple table to show all the different variables
--> table with data excerpt
--> what is $$x_1$$, $$x^{(i)}$$
-It seems like it's a linear function, so we need a function that describes our dataset
-as our initial choice we're going to use
+We're looking for a function that matches our data, it looks like a simple straight line (linear function) 
+should fit well enough. 
 
-$$h_{\theta}(x) = \theta_0 + \theta_1x_1$$
+# Math for linear regression
+It seems like a linear function is going to be the right choice so I'm approixmating $$y$$ with
+ 
+$$h_{\theta}(x^{(m)}) = \theta_0 + \theta_1x_1$$
 
-$$h_{\theta} $$ is called our hypothesis, and it's trying to predict future values.
+$$m$$ is the m-th example from our training set,it is not an exponent it's should just indicate which example we're using
 
-# Basics covered
-http://stackoverflow.com/questions/13623113/can-someone-explain-to-me-the-difference-between-a-cost-function-and-the-gradien
+$$h_{\theta}(x^{(m)})$$ is called hypotheses
+
+$${\theta}_i$$ are our weights
+
+$$x_1$$ is our selected feature
+
+To simplyfiy our notation we're going to introduce $$x_0 = 1$$ so we can write
+
+$$h_{\theta}(x^{(m)}) = \sum_{i=0}^n \theta_ix_i = \theta^Tx$$
+
+$$n$$ is the number of features. Our goal is to choose our weigths so that we get a good prediction.
+
+For our inital weight we're setting the inital $$\theta$$ to 0
+
 ## Cost Function 
--> mean squared error
--> why choose MSE
+The cost function gives us an error margin, it tells us how far apart $$h_{\theta}(x_i)$$ and $$y_i$$ are. There are
+multiple cost function but I'm going to use the mean squared error (MSE).
 
-$$J(\theta) = \sum_{i = 1}^{m} (h_{\theta}(x^{(i)}-y^{i}))^2$$
+$$J(\theta) = \frac{1} {2m} \sum_{i = 1}^{m} (h_{\theta}(x^{(i)})-y^{i})^2$$
 
--> purpose of cost function
--> try to minimize, but how -> gradient descent
--> overfitting if it's everytime 0
+We're trying to choose a $$\theta$$ so that $$J(\theta)$$ is small, to achieve this we're using a gradient descent.
+
 ## Gradient Descent
--> purpose of gradient descent 
--> Steps in the direction of the steepest decrease of J, try to find the local minima
--> What is a Gradient (no calculus required)?
-https://www.youtube.com/watch?v=WnqQrPNYz5Q
+A Gradient descent is a method to minimize $$J(\theta)$$, generally speaking it's a method to minimize a function with multiple parameters.
+
+The gradient descent takes steps in the direction of the steepest decrease of $$J(\theta)$$, with the goals to find the local minimum. 
+After each steps is taken $$\theta$$ is updated. 
+
+For our case we're going to use the batch gradient descent, it starts with an initial $$\theta$$ and repeadedly performs following step:
+
+$$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta) $$
+
+$$\alpha$$ is the learning rate, after solving the partial derivate on the right side you get for a single training example $$i$$ 
+the following result:
+
+$$\begin{align*}
+  \text{repeat until convergence: } \lbrace & \newline 
+  \theta_0 := & \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \newline
+  \theta_1 := & \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right) \newline
+  \rbrace&
+  \end{align*}$$
+
+
+$$\theta_j := \theta_j + \alpha(y^{(i)} - h_{\theta}(x^{(i)}))x_j^{(i)}$$
+
+With our current version we're just taking a look at one training example and update $$\theta$$, so we need to modify it a little bit in order 
+to look simoultaniously at multiple training examples:
+
+$$\theta_j := \theta_j + \alpha \sum_{i=1}^m(y^{(i)} - h_{\theta}(x^{(i)}))x_j^{(i)}$$
+
+This is our final batch gradient descent, it takes a look at every example from our traing set for every step it takes.
+There are other types of gradient descent, but for now I'm just focuing on this one. 
+
+More information on gradient descent can be found [here](https://www.youtube.com/watch?v=WnqQrPNYz5Q)
 
 ## Model definition
 -> What is a model, vector with values that helps us make predictions

@@ -60,7 +60,6 @@ line we will identify it as a valid transaction.
 Predicting the price for a home is a use case for regression algorithms, the goal is to predict/estimate a number.
 So your expected output is a number and not just a class label as in classification.
 
-
 ![Regression Plot](/images/posts/machine-learning-intro/regressionPlot.jpg "Regression Plot")
 ![Regression Plot Fitted](/images/posts/machine-learning-intro/regressionPlotFitted.jpg "Regression Plot Fitted")
 
