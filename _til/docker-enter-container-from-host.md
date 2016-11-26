@@ -9,4 +9,4 @@ categories:
 
 If you want to enter a container and execute commands from inside you just need to type `docker exec -it <container-name> bash`
 
-`docker exec` runs a command in the container, the `i` flag keeps the STDIN open and the `t` flag creates a tty 
+`docker exec` runs a command in the container, the `i` flag keeps the STDIN open and the `t` flag creates a tty.
