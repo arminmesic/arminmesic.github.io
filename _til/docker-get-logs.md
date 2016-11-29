@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Enter Docker container and execute commands"
+title:  "Get logs from Docker"
 date:   2016-11-25
 categories:
     - til
     - docker
 ---
 
-If you want to enter a container and execute commands from inside you just need to type `docker exec -it <container-name> bash`
-
-`docker exec` runs a command in the container, the `i` flag keeps the STDIN open and the `t` flag creates a tty.
+To get a constant stream of logs from a docker container you need `docker logs <container-name> -f`, the `f` flags will
+constantly display the new logs, without this flag it would just display the logs the container had collected till this 
+moment and then close the connection.
