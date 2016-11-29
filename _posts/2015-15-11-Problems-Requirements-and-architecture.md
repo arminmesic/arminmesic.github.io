@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Problems, Requirements and Architecture TEST"
+title:  "Problems, Requirements and Architecture"
 date:   2015-11-15
 categories: 
     - Code Complete 2
