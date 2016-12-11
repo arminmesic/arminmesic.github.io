@@ -2,9 +2,7 @@
 layout: post
 title:  "Change the latest commit message"
 date:   2015-02-10
-categories:
-    - til
-    - git
+tag: [til, git]
 ---
 
 You're in a hurry and made a commit message but you realized later on you've forgotten something or you made 

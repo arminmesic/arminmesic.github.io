@@ -2,9 +2,7 @@
 layout: post
 title:  "Accessing docker app from the host"
 date:   2015-02-17
-categories:
-    - til
-    - docker
+tag: [til, docker]
 ---
 
 If you want to access a running application inside a docker container you need to expose the ports to the host system,

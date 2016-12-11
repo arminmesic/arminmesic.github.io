@@ -2,9 +2,7 @@
 layout: post
 title:  "Switch without default cases can throw error"
 date:   2015-02-23
-categories:
-    - til
-    - javascript
+tag: [til, javascript]
 ---
 
 If a switch statement doesn't have a default case you can throw an error if the input is invalid

@@ -2,9 +2,7 @@
 layout: post
 title:  "Get logs from Docker"
 date:   2016-11-25
-categories:
-    - til
-    - docker
+tag: [til, docker]
 ---
 
 To get a constant stream of logs from a docker container you need `docker logs <container-name> -f`, the `f` flags will

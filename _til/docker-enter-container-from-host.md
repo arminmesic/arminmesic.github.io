@@ -2,9 +2,7 @@
 layout: post
 title:  "Enter Docker container and execute commands"
 date:   2016-11-25
-categories:
-    - til
-    - docker
+tag: [til, docker]
 ---
 
 If you want to enter a container and execute commands from inside you just need to type `docker exec -it <container-name> bash`

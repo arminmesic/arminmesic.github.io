@@ -2,9 +2,7 @@
 layout: post
 title:  "Call functions from curly bracket notation"
 date:   2015-02-11
-categories:
-    - til
-    - angular
+tag: [til, angular]
 ---
 
 You can also bind functions to `$scope` not just variables and you can call these with the curly notation `{{func()}}`, it will
