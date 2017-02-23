@@ -2,14 +2,14 @@
 layout: post
 title:  "Implementing Linear Regression"
 date:   2016-09-15
-categories: 
+categories:
     - Machine Learning
 ---
 
-Linear regression learns from a provided dataset and tries to predict a number. I'm going to show how 
+Linear regression learns from a provided dataset and tries to predict a number. I'm going to show how
 it works with a simple dataset and the goal is to be able to predict housing prices.
 
-I'm going to use a dataset that I got from Andrew Ng's Machine Learning course, it's a simple example 
+I'm going to use a dataset that I got from Andrew Ng's Machine Learning course, it's a simple example
 as the main point of this post is to understand the idea of the algorithm.
 
 I'm going to use Matlab to implement it, you can find the source [here](/about).
@@ -28,68 +28,83 @@ To get a better idea about the data I'm going to plot it.
 
 As you can see I've just selected one feature, the living area, I'm keeping it simple.
 
-We're looking for a function that matches our data, it looks like a simple straight line (linear function) 
-should fit well enough. 
+We're looking for a function that matches our data, it looks like a simple straight line (linear function)
+should fit well enough.
 
 # Math for linear regression
-It seems like a linear function is going to be the right choice so I'm approixmating $$y$$ with
- 
-$$h_{\theta}(x^{(m)}) = \theta_0 + \theta_1x_1$$
+It seems like a linear function is going to be the right choice so I'm approximating $$y$$ with
 
-$$m$$ is the m-th example from our training set,it is not an exponent it's should just indicate which example we're using
+$$
+\def\hypothesis{
+  h_{\theta}(x^{(i)})
+}
+$$
 
-$$h_{\theta}(x^{(m)})$$ is called hypotheses
+$$\hypothesis = \theta_0 + \theta_1 x^{(i)}_1$$
 
-$${\theta}_i$$ are our weights
+$$x^{(i)}_j$$ is the j-th feature of the i-th example, keep in mind $$i$$ is not a power
 
-$$x_1$$ is our selected feature
+$$\hypothesis$$ is called hypotheses
+$$
+\def\thetaVectorExplicit{
+\begin{pmatrix}
+  \theta_0 \dots \theta_n
+\end{pmatrix}}
+$$
 
-To simplyfiy our notation we're going to introduce $$x_0 = 1$$ so we can write
+$$\theta = \thetaVectorExplicit$$, vector with our weights, initially set to $$0$$
 
-$$h_{\theta}(x^{(m)}) = \sum_{i=0}^n \theta_ix_i = \theta^Tx$$
+To simplify our notation we're going to introduce $$x_0 = 1$$ so we can write
 
-$$n$$ is the number of features. Our goal is to choose our weigths so that we get a good prediction.
+$$\hypothesis = \sum_{j=0}^n \theta_j x^{(i)}_j = \theta x^{T}$$
 
-For our inital weight we're setting the inital $$\theta$$ to 0
+$$n$$ is the number of features. Our goal is to choose our weights so that we get a good prediction.
 
-## Cost Function 
-The cost function gives us an error margin, it tells us how far apart $$h_{\theta}(x_i)$$ and $$y_i$$ are. There are
-multiple cost function but I'm going to use the mean squared error (MSE).
+## Cost Function
+The cost function gives us an error margin, it tells us how far apart $$\hypothesis$$ and $$y_i$$ are. There are multiple cost function but I'm going to use the mean squared error (MSE).
 
-$$J(\theta) = \frac{1} {2m} \sum_{i = 1}^{m} (h_{\theta}(x^{(i)})-y^{i})^2$$
+$$J(\theta) = \frac{1} {2m} \sum_{i = 1}^{m} (\hypothesis-y^{(i)})^2$$
 
 We're trying to choose a $$\theta$$ so that $$J(\theta)$$ is small, to achieve this we're using a gradient descent.
 
 ## Gradient Descent
+// Place this formula at the right place
+
+$$
+\def\gradientDescFThetaMatrix{
+\begin{pmatrix}
+    \frac{\partial J(\theta)}{\partial \theta_0} \\
+    \vdots \\
+    \frac{\partial J(\theta)}{\partial \theta_n}
+\end{pmatrix}}
+
+
+\nabla_{\theta} J(\theta)= \gradientDescFThetaMatrix$$
+
 A Gradient descent is a method to minimize $$J(\theta)$$, generally speaking it's a method to minimize a function with multiple parameters.
 
-The gradient descent takes steps in the direction of the steepest decrease of $$J(\theta)$$, with the goals to find the local minimum. 
-After each steps is taken $$\theta$$ is updated. 
+The gradient descent takes steps in the direction of the steepest decrease of $$J(\theta)$$, with the goals to find the local minimum.
+After each steps is taken $$\theta$$ is updated.
 
-For our case we're going to use the batch gradient descent, it starts with an initial $$\theta$$ and repeadedly performs following step:
+For our case we're going to use the batch gradient descent, it starts with an initial $$\theta_i$$ and repeatedly performs following step, where $$\alpha$$ is the learning rate:
 
-$$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta) $$
+$$\theta_i := \theta_i - \alpha \frac{\partial J(\theta)}{\partial \theta_i}$$
 
-$$\alpha$$ is the learning rate, after solving the partial derivate on the right side you get for a single training example $$i$$ 
-the following result:
+after solving the partial derivate for our example, keep in mind we only have $$\theta_0$$ and $$\theta_1$$:
 
-$$\begin{align*}
-  \text{repeat until convergence: } \lbrace & \newline 
-  \theta_0 := & \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \newline
-  \theta_1 := & \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right) \newline
-  \rbrace&
-  \end{align*}$$
+$$
+\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(\hypothesis - y^{(i)}) x^{(i)}_{0} \\
+\theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(\hypothesis - y^{(i)}) x^{(i)}_{1}
+$$
+
+this can be generalized to
+
+$$\theta_i := \theta_i - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(\hypothesis - y^{(i)}) x^{(i)}_{j}$$
 
 
-$$\theta_j := \theta_j + \alpha(y^{(i)} - h_{\theta}(x^{(i)}))x_j^{(i)}$$
-
-With our current version we're just taking a look at one training example and update $$\theta$$, so we need to modify it a little bit in order 
-to look simoultaniously at multiple training examples:
-
-$$\theta_j := \theta_j + \alpha \sum_{i=1}^m(y^{(i)} - h_{\theta}(x^{(i)}))x_j^{(i)}$$
-
-This is our final batch gradient descent, it takes a look at every example from our traing set for every step it takes.
-There are other types of gradient descent, but for now I'm just focuing on this one. 
+This is our final batch gradient descent, it takes a look at every example from our training set for every step it takes.
+There are other types of gradient descent, but for now I'm just focusing on this one. The gradient descent is
+repeatedly performed till it reaches it's minimum, and as a result we get $$\theta$$
 
 More information on gradient descent can be found [here](https://www.youtube.com/watch?v=WnqQrPNYz5Q)
 
