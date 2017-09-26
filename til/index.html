@@ -14,6 +14,17 @@ title: Blog
     {% endfor %}
  {{site.til.categories}}
 <div class="post-list">
+    <h1>Python</h1>
+    {% for til in site.til %}
+        {% if til.categories contains 'python' %}
+            <div class="article">
+                <h1 class="post-title">
+                    <a class="post-link" href="{{ til.url | prepend: site.baseurl }}">{{ til.title }}</a>
+                </h1>
+            </div>
+        {% endif %}
+    {% endfor %}
+
     <h1>Angular</h1>
     {% for til in site.til %}
         {% if til.categories contains 'angular' %}
@@ -24,7 +35,7 @@ title: Blog
             </div>
         {% endif %}
     {% endfor %}
-    
+
     <h1>Docker</h1>
     {% for til in site.til %}
         {% if til.categories contains 'docker' %}
@@ -35,7 +46,7 @@ title: Blog
             </div>
         {% endif %}
     {% endfor %}
-    
+
     <h1>Git</h1>
     {% for til in site.til %}
         {% if til.categories contains 'git' %}
@@ -46,7 +57,7 @@ title: Blog
             </div>
         {% endif %}
     {% endfor %}
-    
+
     <h1>Javascript</h1>
     {% for til in site.til %}
         {% if til.categories contains 'javascript' %}
@@ -57,7 +68,7 @@ title: Blog
             </div>
         {% endif %}
     {% endfor %}
-    
+
   </div>
-  
+
 </div>
