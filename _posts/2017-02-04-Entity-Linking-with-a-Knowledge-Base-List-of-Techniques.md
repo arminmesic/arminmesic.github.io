@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Implementing Linear Regression"
-date:   2016-04-02
+title:  "Entity Linking with a Knowledgebase Part 1"
+date:   2017-04-02
 categories:
     - Machine Learning
     - NLP
