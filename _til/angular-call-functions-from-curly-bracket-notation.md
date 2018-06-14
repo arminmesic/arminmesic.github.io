@@ -6,7 +6,7 @@ categories:
     - til
     - angular
 ---
-[I'm an inline-style link](https://www.mydeeplink.com/?tourID=12345)
+[I'm an inline-style link](www.mydeeplink.com/?tourID=12345)
 
 You can also bind functions to `$scope` not just variables and you can call these with the curly notation `{{func()}}`, it will
 be executed every time the digest cycle starts.
