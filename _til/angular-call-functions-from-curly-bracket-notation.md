@@ -4,6 +4,7 @@ title:  "Call functions from curly bracket notation"
 date:   2015-02-11
 tag: [til, angular]
 ---
+[I'm an inline-style link](www.mydeeplink.com/?tourID=12345)
 
 You can also bind functions to `$scope` not just variables and you can call these with the curly notation `{{func()}}`, it will
 be executed every time the digest cycle starts.
